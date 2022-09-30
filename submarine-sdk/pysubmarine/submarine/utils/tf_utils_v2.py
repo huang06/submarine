@@ -23,7 +23,6 @@ from submarine.ml.tensorflow_v2.optimizer import get_optimizer
 
 def _get_session_config_from_env_var(params):
     """Returns a tf.ConfigProto instance with appropriate device_filters set."""
-    tf.compat.v1.disable_v2_behavior()
     tf_config = json.loads(os.environ.get("TF_CONFIG", "{}"))
 
     if tf_config and "task" in tf_config and "type" in tf_config["task"] and "index" in tf_config["task"]:
@@ -54,7 +53,6 @@ def get_tf_config(params):
     :return: The class specifies the configurations for an Estimator run
     """
     if params["training"]["mode"] == "local":  # local mode
-        tf.compat.v1.disable_v2_behavior()
         tf_config = tf.estimator.RunConfig().replace(
             session_config=tf.compat.v1.ConfigProto(
                 device_count={

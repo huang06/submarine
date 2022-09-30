@@ -17,8 +17,6 @@ import tensorflow as tf
 import tf_slim as slim
 from tensorflow.keras.layers import Layer
 
-tf.compat.v1.disable_v2_behavior()
-
 
 def batch_norm_layer(x, train_phase, scope_bn, batch_norm_decay):
     bn_train = slim.batch_norm(
